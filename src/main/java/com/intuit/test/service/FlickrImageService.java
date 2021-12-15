@@ -16,9 +16,9 @@ import com.intuit.test.utilities.UriHelper;
 
 @Service
 public class FlickrImageService implements ImageService {
-	private static final String IMAGE_TAG_KEY = "tag";
+	private static final String IMAGE_TAG_KEY = "tags";
 	private static final String ENCLOSURE_REL = "enclosure";
-	private static final String IMAGE_JPEG_TYPE = "enclosure";
+	private static final String IMAGE_JPEG_TYPE = "image/jpeg";
 	
 	private final RestTemplate restTemplate;
 	private final FlickrConfig config;

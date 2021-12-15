@@ -27,9 +27,18 @@ jobs:
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.3.1
       with:
-        # Artifact name
         name: flickrApiTargetFolder
-        # A file, directory or wildcard pattern that describes what to upload
         path: target/*
-        # The desired behavior if no files are found using the provided path.
+        if-no-files-found: warn
+    - name: Setup Docker
+      uses: docker-practice/actions-setup-docker@1.0.8
+    - name: Build Docker Image and Save
+      run: |
+        docker build -t flickr.api:latest -f dockerfile .
+        docker save -o flickr.api-latest.tar flickr.api:latest
+    - name: Upload Docker Image artifact
+      uses: actions/upload-artifact@v2.3.1
+      with:
+        name: flickrApiDockerImage
+        path: flickr.api-latest.tar
         if-no-files-found: warn
